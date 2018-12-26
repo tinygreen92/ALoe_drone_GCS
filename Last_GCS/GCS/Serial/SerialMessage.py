@@ -8,8 +8,8 @@ class SerialMessage:
     # mav-link 객체 선언
     def __init__(self, systemid=1, compid=1, mav=None):
         self.mav = mav
-        self.systemId = systemid
-        self.compId = compid
+        self.systemId = systemid  # System ID  ==> ex)같은 메세지도 여러 보드로 구분할때 사용.
+        self.compId = compid # Component ID  ==> ex) 한 보드내에 여러 그룹이 있을때 구분용으로 사용 .
 
     # dataStreamAuto 메시지로 현재 보낼수 있는 메시지를 다 보내달라고 요청
     # start 1 은 On , 0 은 off
@@ -133,7 +133,7 @@ class SerialMessage:
     ########################################################################################
     #  COMMAND_LONG 분기
     ########################################################################################
-    # Nav Take off (cmd : 22)
+    # Nav Take off (cmd : 22) - setMode 22번 이라는 뜻
     def cmd_nav_takeoff(self, height=10):
         data = self.cmd_long_buf(22, param7=height)
         return data
